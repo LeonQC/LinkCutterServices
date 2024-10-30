@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # 第一组
+  redis-master-1:
+    image: redis:latest
+    container_name: redis-master-1
+    ports:
+      - "8000:6379"
+    volumes:
+      - ./redis-master-1.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-slave-1:
+    image: redis:latest
+    container_name: redis-slave-1
+    ports:
+      - "8001:6379"
+    depends_on:
+      - redis-master-1
+    volumes:
+      - ./redis-slave-1.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-slave-2:
+    image: redis:latest
+    container_name: redis-slave-2
+    ports:
+      - "8002:6379"
+    depends_on:
+      - redis-master-1
+    volumes:
+      - ./redis-slave-2.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  # 第二组
+  redis-master-2:
+    image: redis:latest
+    container_name: redis-master-2
+    ports:
+      - "8003:6379"
+    volumes:
+      - ./redis-master-2.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-slave-3:
+    image: redis:latest
+    container_name: redis-slave-3
+    ports:
+      - "8004:6379"
+    depends_on:
+      - redis-master-2
+    volumes:
+      - ./redis-slave-3.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis-slave-4:
+    image: redis:latest
+    container_name: redis-slave-4
+    ports:
+      - "8005:6379"
+    depends_on:
+      - redis-master-2
+    volumes:
+      - ./redis-slave-4.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
