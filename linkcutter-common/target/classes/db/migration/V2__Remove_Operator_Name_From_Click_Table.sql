@@ -1,0 +1,1 @@
+ALTER TABLE click_table DROP COLUMN operator_name

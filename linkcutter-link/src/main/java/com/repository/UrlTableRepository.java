@@ -1,7 +1,6 @@
 package com.repository;
 
 import com.entity.UrlTableEntity;
-import jakarta.persistence.OneToMany;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

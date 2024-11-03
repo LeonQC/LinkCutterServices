@@ -41,3 +41,7 @@ sms:
 
 application:
   name: linkCutter
+
+
+  flyway:
+    baseline-on-migrate: true
